@@ -1,0 +1,21 @@
+{
+    "name": "quinn-website",
+    "version": "1.0.0",
+    "description": "Quinn Tenorio's personal website",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx @11ty/eleventy --serve",
+        "build": "npx @11ty/eleventy"
+    },
+    "author": "Quinn Tenorio",
+    "license": "ISC",
+    "devDependencies": {
+        "@11ty/eleventy": "^0.12.1",
+        "@notion-stuff/blocks-html-parser": "^5.0.0",
+        "@notionhq/client": "^0.4.11",
+        "contentful": "^9.1.5",
+        "dotenv": "^10.0.0",
+        "highlight.js": "^11.3.1",
+        "marked": "^4.0.8"
+    }
+}

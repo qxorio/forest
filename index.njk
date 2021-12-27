@@ -1,0 +1,14 @@
+---
+layout: layout.html
+---
+<main>
+    <h1>A brave new world, indeed.</h1>
+    {% for post in database %}
+        <article>
+            <h1>{{ post.title }}</h1>
+            <time>{{ post.published }}</time>
+            <a href="/posts/{{ post.title | slug }}">Read the post</a>
+        </article>
+    {% endfor %}
+
+</main>

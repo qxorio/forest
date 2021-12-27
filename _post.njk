@@ -1,0 +1,16 @@
+---
+layout: layout.html
+pagination:
+    data: posts
+    size: 1
+    alias: post
+permalink:  "posts/{{ post.title | slug }}/index.html"
+eleventyComputed: 
+    title: "{{ post.title }}"
+---
+<main>
+    <h1>{{ post.title }}</h1>
+    <p>Published on: <time>{{ post.published }}</time></p>
+    <!--<img src="{{ post.fields.heroImage.fields.file.url }}?w=400" />-->
+    <div>{{ post.body | safe }}</div>
+</main>
