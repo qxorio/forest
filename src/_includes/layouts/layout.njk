@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ description or metadata.description }}" />
+        <meta name="robots" content="index,follow" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css"
+            rel="stylesheet"
+        />
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+        {% block og %} {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <a href="/" class="nav-brand">quinn tenorio</a>
+            <ul class="nav-items">
+                <li>
+                    <a href="/posts" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
+                        >posts</a
+                    >
+                </li>
+                <li>
+                    <a href="/bookshelf" class="nav-item {% if page.url.includes('bookshelf') %}nav-item-active{% endif %}"
+                        >bookshelf</a
+                    >
+                </li>
+            </ul>
+        </nav>
+        {{page.url.includes('post')}} {% block content %} {{ content }} {% endblock %}
+    </body>
+</html>
