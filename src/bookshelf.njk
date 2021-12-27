@@ -2,6 +2,12 @@
 
 {% block content %}
 <main>
-    <h2>bookshelf</h2>
+    {% for book in books %}
+        <article>
+            <h1>{{ book.title }}</h1>
+            <time>{{ book.published }}</time>
+            <a href="/bookshelf/{{ book.title | slug }}">Read the rating</a>
+        </article>
+    {% endfor %}
 </main>
 {% endblock %}

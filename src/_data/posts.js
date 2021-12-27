@@ -1,9 +1,8 @@
 require("dotenv").config();
-const Client = require("@notionhq/client");
-const notion = new Client.Client({ auth: process.env.NOTION_TOKEN });
-const postDatabase = process.env.NOTION_BLOG_DB_ID;
-const notionBlocks = require("@notion-stuff/blocks-html-parser");
-const parser = notionBlocks.NotionBlocksHtmlParser.getInstance();
+const notion = require("../_lib/utils").notionClient;
+const blockParser = require("../_lib/utils").notionBlockParser;
+
+const postDatabase = process.env.NOTION_POST_DB_ID;
 
 module.exports = async () => {
     let results = [];
@@ -64,10 +63,8 @@ async function getBlocks(post) {
                     block.image.caption[0].plain_text.toString() +
                     '">'
                 );
-                break;
             default:
-                return parser.parse([block]);
-                break;
+                return blockParser.parse([block]);
         }
     });
 
