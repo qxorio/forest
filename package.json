@@ -4,18 +4,29 @@
     "description": "Quinn Tenorio's personal website",
     "main": "index.js",
     "scripts": {
-        "start": "npx @11ty/eleventy --serve",
-        "build": "npx @11ty/eleventy"
+        "clean": "rimraf _site",
+        "build": "npm run sass && eleventy",
+        "watch:eleventy": "eleventy --serve",
+        "sass": "sass --style=compressed --no-sourcemap src/assets/styles/main.scss _site/assets/styles/main.min.css",
+        "watch:sass": "sass --watch src/assets/styles/main.scss:_site/assets/styles/main.min.css",
+        "start": "npm-run-all clean --parallel watch:*"
     },
-    "author": "Quinn Tenorio",
+    "author": {
+        "name": "Quinn Tenorio",
+        "email": "hey@quinntenor.io"
+    },
     "license": "ISC",
     "devDependencies": {
         "@11ty/eleventy": "^0.12.1",
         "@notion-stuff/blocks-html-parser": "^5.0.0",
         "@notionhq/client": "^0.4.11",
-        "contentful": "^9.1.5",
         "dotenv": "^10.0.0",
         "highlight.js": "^11.3.1",
-        "marked": "^4.0.8"
+        "marked": "^4.0.8",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^3.0.2"
+    },
+    "dependencies": {
+        "sass": "^1.45.1"
     }
 }
