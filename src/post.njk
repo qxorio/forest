@@ -3,9 +3,12 @@ pagination:
     data: posts
     size: 1
     alias: post
+    addAllPagesToCollections: true
 permalink:  "posts/{{ post.title | slug }}/index.html"
 eleventyComputed: 
     title: "{{ post.title }}"
+tags:
+    - post
 ---
 {% extends 'layouts/layout.njk' %}
 
@@ -13,6 +16,7 @@ eleventyComputed:
 <main>
     <h1>{{ post.title }}</h1>
     <p>Published on: <time>{{ post.published }}</time></p>
+    <p>Last edited: <time>{{ post.edited }}</time></p>
     <div>{{ post.body | safe }}</div>
 </main>
 {% endblock %}

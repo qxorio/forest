@@ -15,21 +15,26 @@
         {% block og %} {% endblock %}
     </head>
     <body>
-        <nav>
-            <a href="/" class="nav-brand">quinn tenorio</a>
-            <ul class="nav-items">
-                <li>
-                    <a href="/posts" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
-                        >posts</a
-                    >
-                </li>
-                <li>
-                    <a href="/bookshelf" class="nav-item {% if page.url.includes('bookshelf') %}nav-item-active{% endif %}"
-                        >bookshelf</a
-                    >
-                </li>
-            </ul>
-        </nav>
-        {% block content %} {{ content }} {% endblock %}
+        <div class="main-content">
+            <nav>
+                <a href="/" class="nav-brand">quinn tenorio</a>
+                <ul>
+                    <li>
+                        <a href="/posts" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
+                            >posts</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/bookshelf" class="nav-item {% if page.url.includes('bookshelf') %}nav-item-active{% endif %}"
+                            >bookshelf</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            {% block content %} {{ content }} {% endblock %}
+            <footer>
+                Made with <a href="https://11ty.dev">11ty</a> and love | &copy; {{now}} Quinn Tenorio
+            </footer>
+        </div>
     </body>
 </html>

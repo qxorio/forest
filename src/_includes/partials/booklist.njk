@@ -1,0 +1,18 @@
+<div class="display-title-with-disclaimer">
+    <h1>bookshelf</h1>
+    <small>books on the bookshelf link to my review on Goodreads; ❓ denotes a book being read</small>
+</div>
+<div class="bookshelf">
+{% for book in booklist %}
+    <article class="book-on-shelf">
+        <a href="{{ book.review }}">
+            <img src="{{ book.cover }}" alt="{{ book.title }} book cover by {{ book.author }}">
+            <span>
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.author }}</p>
+                <p>{{ book.rating }}</p>
+            </span>
+        </a>
+    </article>
+{% endfor %}
+</div>

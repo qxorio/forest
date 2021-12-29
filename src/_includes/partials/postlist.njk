@@ -1,0 +1,12 @@
+<h1 class="display-title">posts</h1>
+{% for post in postlist %}
+    <article class="list-item">
+        <a href="/posts/{{ post.title | slug }}">
+            <div>
+                <h2>{{ post.title }}</h2>
+                <time>{{ post.published }}</time>
+            </div>
+            <span>{{ post.tags.join(', ') }}</span>
+        </a>
+    </article>
+{% endfor %}

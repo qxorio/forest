@@ -24,15 +24,19 @@ module.exports = async () => {
 
     var posts = await Promise.all(results.map(getBlocks));
 
-    return posts.map((post) => {
-        return {
-            published: post.created_time,
-            edited: post.last_edited_time,
-            tags: post.properties.Tags.multi_select.map((tag) => tag.name),
-            title: post.properties.Title.title[0].plain_text,
-            body: post.content,
-        };
-    });
+    return posts
+        .map((post) => {
+            return {
+                published: new Date(post.created_time).toDateString(),
+                edited: new Date(post.last_edited_time).toDateString(),
+                tags: post.properties.Tags.multi_select.map((tag) => tag.name),
+                title: post.properties.Title.title[0].plain_text,
+                body: post.content,
+            };
+        })
+        .sort((a, b) => {
+            return new Date(b.published) - new Date(a.published);
+        });
 };
 
 async function getBlocks(post) {

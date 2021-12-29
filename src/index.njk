@@ -2,12 +2,22 @@
 
 {% block content %}
 <main>
-    {% for post in posts %}
-        <article>
-            <h1>{{ post.title }}</h1>
-            <time>{{ post.published }}</time>
-            <a href="/posts/{{ post.title | slug }}">Read the post</a>
-        </article>
-    {% endfor %}
+    <section class="main-section">
+        <h1 class="display-title">about</h1>
+        <p>My name is Quinn Tenorio! I am a Software Developer based in Golden, CO focused primarily on web and mobile application development. I am an alum of Colorado School of Mines where I earned my undergraduate degree in Computer Science.</p>
+        <p>I am a Colorado native and am happy to brand myself as one. While I enjoy coding, I also enjoy hiking around the foothills and reading (when I get a chance). I've recently become immersed in collecting and caring for houseplants!</p>
+    </section>
+
+    <section class="main-section">
+        {% set postlist = collections.featuredPosts %}
+        {% include "partials/postlist.njk" %}
+        <p class="see-more-container"><a href="/posts" class="page-nav-link">see more posts</a></p>
+    </section>
+    
+    <section class="main-section">
+        {% set booklist = collections.featuredBooks %}
+        {% include "partials/booklist.njk" %}
+        <p class="see-more-container"><a href="/bookshelf" class="page-nav-link">see more books</a></p>
+    </section>
 </main>
 {% endblock %}

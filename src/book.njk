@@ -3,9 +3,12 @@ pagination:
     data: books
     size: 1
     alias: book
+    addAllPagesToCollections: true
 permalink:  "bookshelf/{{ book.title | slug }}/index.html"
 eleventyComputed: 
     title: "{{ book.title }}"
+tags: 
+    - book
 ---
 {% extends 'layouts/layout.njk' %}
 
@@ -16,6 +19,6 @@ eleventyComputed:
     <h2>{{ book.author }}</h2>
     <p>Read on: <time>{{ book.read }}</time></p>
     <p>Rating: {{ book.rating }}</p>
-    <div>{{ book.review | safe }}</div>
+    <a href="{{ book.review }}">Review on Goodreads</a>
 </main>
 {% endblock %}

@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "FiraSans-Regular";
+    src: url("/assets/fonts/firasans/firasans.woff2") format("woff2"),
+        url("/assets/fonts/firasans/firasans.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "FiraSans-Italic";
+    src: url("/assets/fonts/firasans/firasans-italic.woff2") format("woff2"),
+        url("/assets/fonts/firasans/firasans-italic.woff") format("woff");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "FiraSans-LightItalic";
+    src: url("/assets/fonts/firasans-light/firasans-light-italic.woff2") format("woff2"),
+        url("/assets/fonts/firasans-light/firasans-light-italic.woff") format("woff");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "FiraSans-Light";
+    src: url("/assets/fonts/firasans-light/firasans-light.woff2") format("woff2"),
+        url("/assets/fonts/firasans-light/firasans-light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Viaoda Libre";
+    src: url("/assets/fonts/viaoda-libre/viaoda-libre.woff2") format("woff2"),
+        url("/assets/fonts/viaoda-libre/viaoda-libre.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+        font-family: "Viaoda Libre";
+        src: url("/assets/fonts/viaoda-libre/viaoda-libre.woff2") format("woff2"),
+            url("/assets/fonts/viaoda-libre/viaoda-libre.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+}
