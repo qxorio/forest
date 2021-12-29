@@ -7,7 +7,7 @@
         "clean": "rimraf _site",
         "build": "npm run sass && eleventy",
         "watch:eleventy": "eleventy --serve",
-        "sass": "sass --style=compressed --sourcemap=none src/assets/styles/main.scss _site/assets/styles/main.min.css",
+        "sass": "sass --no-source-map --style compressed src/assets/styles/main.scss _site/assets/styles/main.min.css",
         "watch:sass": "sass --watch src/assets/styles/main.scss:_site/assets/styles/main.min.css",
         "start": "npm-run-all clean --parallel watch:*"
     },
