@@ -24,17 +24,21 @@ module.exports = async () => {
 
     var books = await Promise.all(results.map(getBlocks));
 
-    return books.map((book) => {
-        return {
-            read: new Date(book.properties.Read.date.start).toDateString(),
-            author: book.properties.Author.rich_text[0].plain_text,
-            rating: book.properties.Rating.rich_text[0].plain_text,
-            title: book.properties.Title.title[0].plain_text,
-            cover: book.properties.Cover.files[0].name,
-            review: book.properties.Review.url,
-            reading: book.properties.Reading.checkbox,
-        };
-    });
+    return books
+        .map((book) => {
+            return {
+                read: new Date(book.properties.Read.date.start).toDateString(),
+                author: book.properties.Author.rich_text[0].plain_text,
+                rating: book.properties.Rating.rich_text[0].plain_text,
+                title: book.properties.Title.title[0].plain_text,
+                cover: book.properties.Cover.files[0].name,
+                review: book.properties.Review.url,
+                reading: book.properties.Reading.checkbox,
+            };
+        })
+        .sort((a, b) => {
+            return new Date(b.read) - new Date(a.read);
+        });
 };
 
 async function getBlocks(book) {

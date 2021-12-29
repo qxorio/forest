@@ -14,9 +14,19 @@ tags:
 
 {% block content %}
 <main>
-    <h1>{{ post.title }}</h1>
-    <p>Published on: <time>{{ post.published }}</time></p>
-    <p>Last edited: <time>{{ post.edited }}</time></p>
-    <div>{{ post.body | safe }}</div>
+    <article class="post-content">
+        <header class="post-header">
+            <h1>{{ post.title }}</h1>
+            <p>
+                <time>{{ post.published }}</time> 
+                {% if post.published != post.edited %}
+                &mdash; updated <time>{{post.edited}}</time>
+                {%endif%}
+                &bull; {{ post.tags.join(', ') }}
+            </p>
+        </header>
+        <hr>
+        {{ post.body | safe }}
+    </article>
 </main>
 {% endblock %}

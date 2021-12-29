@@ -58,20 +58,26 @@ async function getBlocks(post) {
     }
 
     blocks = blocks.map((block) => {
-        switch (block.type) {
-            case "image":
-                return (
-                    '<img src="' +
-                    block.image.file.url +
-                    '" alt="' +
-                    block.image.caption[0].plain_text.toString() +
-                    '">'
-                );
-            default:
-                return blockParser.parse([block]);
+        // shift all headings to be one level lower, to exclude h1 (used for the post title)
+        if (block.type.startsWith("heading")) {
+            const { heading, ...restOfBlock } = block;
+            let incrementedHeading = "heading_" + (+block.type.split("_")[1] + 1);
+
+            let newBlock = {
+                ...restOfBlock,
+                type: incrementedHeading,
+            };
+
+            newBlock[incrementedHeading] = block[block.type];
+            return newBlock;
         }
+
+        return block;
     });
 
-    post.content = blocks.join("");
+    blocks = blockParser.parse(blocks);
+    console.log(typeof blocks);
+
+    post.content = blocks.replace(/<figcaption.*?>.*?<\/figcaption>/gi, ""); //.join("");
     return post;
 }

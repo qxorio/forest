@@ -1,5 +1,12 @@
+/*** UTILITIES ***/
 @import "utils/variables";
 @import "utils/mixins";
+
+/*** GENERAL (global) ***/
 @import "normalize";
-@import "_fonts";
+@import "fonts";
 @import "base";
+@import "general/prism";
+
+/*** COMPONENTS ***/
+@import "components/post";
