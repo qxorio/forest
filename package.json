@@ -17,16 +17,16 @@
     },
     "license": "ISC",
     "devDependencies": {
+        "rimraf": "^3.0.2"
+    },
+    "dependencies": {
         "@11ty/eleventy": "^0.12.1",
-        "@notion-stuff/blocks-html-parser": "^5.0.0",
+        "@notion-stuff/blocks-html-parser": "^5.1.0",
         "@notionhq/client": "^0.4.11",
         "dotenv": "^10.0.0",
         "highlight.js": "^11.3.1",
         "marked": "^4.0.8",
         "npm-run-all": "^4.1.5",
-        "rimraf": "^3.0.2"
-    },
-    "dependencies": {
         "sass": "^1.45.1"
     }
 }
