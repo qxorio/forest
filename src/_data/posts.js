@@ -27,17 +27,23 @@ module.exports = async () => {
     return posts
         .map((post) => {
             return {
-                published: new Date(post.created_time).toDateString(),
-                edited: new Date(post.last_edited_time).toDateString(),
+                published: getCustomDate(post.created_time),
+                edited: getCustomDate(post.last_edited_time),
                 tags: post.properties.Tags.multi_select.map((tag) => tag.name),
                 title: post.properties.Title.title[0].plain_text,
                 body: post.content,
+                description: post.properties.Description.rich_text[0].plain_text,
+                ogImage: post.properties.OGImage.files[0].file.url,
             };
         })
         .sort((a, b) => {
             return new Date(b.published) - new Date(a.published);
         });
 };
+
+function getCustomDate(date) {
+    return new Date(date).toDateString().split(" ").splice(1).join(" ");
+}
 
 async function getBlocks(post) {
     var blocks = [];
@@ -75,9 +81,6 @@ async function getBlocks(post) {
         return block;
     });
 
-    blocks = blockParser.parse(blocks);
-    console.log(typeof blocks);
-
-    post.content = blocks.replace(/<figcaption.*?>.*?<\/figcaption>/gi, ""); //.join("");
+    post.content = blockParser.parse(blocks);
     return post;
 }

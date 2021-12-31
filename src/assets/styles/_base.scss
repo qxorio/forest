@@ -113,7 +113,11 @@ nav {
 
 .nav-brand::after,
 .nav-item::after,
-.see-more-container a::after {
+.see-more-container a::after,
+.social-accounts a::after,
+.about-section p a::after,
+footer a::after,
+.link-styling::after {
     content: "";
     display: block;
     border-bottom: 1px solid $primary--color;
@@ -130,7 +134,11 @@ nav {
 .nav-brand:hover::after,
 .nav-item:hover::after,
 .nav-item-active::after,
-.see-more-container a:hover::after {
+.see-more-container a:hover::after,
+.social-accounts a:hover::after,
+.about-section p a:hover::after,
+footer a:hover::after,
+.link-styling:hover::after {
     width: 100%;
 }
 
@@ -230,4 +238,62 @@ footer {
             transition: background-position ease 0.5s;
         }
     }
+}
+
+.social-accounts {
+    padding-left: 0;
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    :nth-child(3) {
+        padding-top: 0.175em;
+    }
+
+    li {
+        list-style: none;
+        margin: 0.2em 0;
+    }
+
+    a {
+        color: $primary--color;
+        font-weight: bold;
+        display: inline-block;
+
+        svg {
+            width: 1rem;
+        }
+
+        span {
+            line-height: 1em;
+            position: relative;
+            top: -2px;
+        }
+    }
+}
+
+.about-section {
+    p a {
+        color: $primary--color;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    @include screen-query(sm) {
+        .social-accounts {
+            :nth-child(3) {
+                padding-top: 0;
+            }
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+    }
+}
+
+footer a,
+.link-styling {
+    display: inline-block;
+    color: $primary--color;
+    font-weight: bold;
 }

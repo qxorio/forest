@@ -8,7 +8,6 @@
             font-family: $font--display;
             font-size: 2.5em;
             font-weight: normal;
-            text-transform: uppercase;
 
             @include screen-query(sm) {
                 font-size: 2.75em;

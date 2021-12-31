@@ -1,0 +1,16 @@
+{
+    "name": "Quinn Tenorio Personal Site",
+    "short_name": "Quinn Tenorio",
+    "icons": [
+        {
+            "src": "/assets/meta/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "density": "4.0"
+        }
+    ],
+    "start_url": "/",
+    "theme_color": "#ECECEC",
+    "background_color": "#ECECEC",
+    "display": "minimal-ui"
+}

@@ -16,6 +16,7 @@ module.exports = function (eleventyConfig) {
 
     /*** BUILD ***/
     eleventyConfig.addPassthroughCopy("src/assets/fonts");
+    eleventyConfig.addPassthroughCopy("src/assets/meta");
 
     return {
         // These are all optional, defaults are shown:

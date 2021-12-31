@@ -3,12 +3,46 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{ title }}</title>
-        <meta name="description" content="{{ description or metadata.description }}" />
-        <meta name="robots" content="index,follow" />
+        <title>
+            Quinn Tenorio {% if title %}| {{ title }}{% endif %}
+        </title>
+        <meta name="description" content="{% if description %}{{ description }}
+            {% else %}The personal site of Quinn tenorio{% endif %}" />
+
+        <link rel="icon" type="image/ico" sizes="32x32" href="/assets/meta/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/meta/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/meta/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/meta/favicon-16x16.png" />
+        <link rel="manifest" href="/assets/meta/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ececec" />
+        <meta name="theme-color" content="#ECECEC" />
+
+        <!--<link rel="preload" href="/assets/fonts/firasans-light/firasans-light.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/assets/fonts/firasans-light/firasans-light-italic.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/assets/fonts/viaoda-libre/viaoda-libre.woff2" as="font" type="font/woff2" crossorigin />-->
+
         <link rel="stylesheet" href="{{ '/assets/styles/main.min.css' | url }}">
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
-        {% block og %} {% endblock %}
+        
+        <meta property="og:title" content="Quinn Tenorio {% if title %}|{% endif %} {% if title %}{{ title }}{% endif %}"/>
+        <meta property="og:url" content={{ page.url | url }} />
+        <meta property="og:description" content="{% if description %}{{ description }}
+            {% else %}The personal site of Quinn tenorio{% endif %}" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:description" content="{% if description %}{{ description }}
+            {% else %}The personal site of Quinn tenorio{% endif %}" />
+        <meta name="twitter:site" content="@quinnktenorio" />
+        <meta name="twitter:title" content="Quinn Tenorio {% if title %}|{% endif %} {% if title %}{{ title }}{% endif %}" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {% if post and post.ogImage %}
+        <meta name="twitter:image" content="{{ post.ogImage | url }}" />
+        <meta property="og:image" content="{{ post.ogImage | url }}" />
+        {% else %}
+        <meta name="twitter:image" content="https://quinntenor.io/assets/meta/og-image-default.jpg" />
+        <meta property="og:image" content="https://quinntenor.io/assets/meta/og-image-default.jpg" />
+        {% endif %}
+
     </head>
     <body>
         <div class="main-content">

@@ -1,6 +1,5 @@
 require("dotenv").config();
 const notion = require("../_lib/utils").notionClient;
-const blockParser = require("../_lib/utils").notionBlockParser;
 
 const postDatabase = process.env.NOTION_BOOKSHELF_DB_ID;
 
@@ -22,12 +21,10 @@ module.exports = async () => {
         results = [...results, ...data.results];
     }
 
-    var books = await Promise.all(results.map(getBlocks));
-
-    return books
+    return results
         .map((book) => {
             return {
-                read: new Date(book.properties.Read.date.start).toDateString(),
+                read: getCustomDate(book.properties.Read.date.start),
                 author: book.properties.Author.rich_text[0].plain_text,
                 rating: book.properties.Rating.rich_text[0].plain_text,
                 title: book.properties.Title.title[0].plain_text,
@@ -41,24 +38,6 @@ module.exports = async () => {
         });
 };
 
-async function getBlocks(book) {
-    var blocks = [];
-
-    let blockPage = await notion.blocks.children.list({
-        block_id: book.id,
-    });
-
-    blocks = [...blockPage.results];
-
-    while (blockPage.has_more) {
-        blockPage = await notion.blocks.children.list({
-            block_id: book.id,
-            start_cursor: blockPage.next_cursor,
-        });
-
-        blocks = [...blocks, ...blockPage.results];
-    }
-
-    book.content = blockParser.parse(blocks);
-    return book;
+function getCustomDate(date) {
+    return new Date(date).toDateString().split(" ").splice(1).join(" ");
 }
