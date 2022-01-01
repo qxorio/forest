@@ -9,6 +9,11 @@
         <meta name="description" content="{% if description %}{{ description }}
             {% else %}The personal site of Quinn tenorio{% endif %}" />
 
+        <link rel="preload" href="/assets/fonts/firasans-light/firasans-light.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/assets/fonts/firasans-light/firasans-light-italic.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/assets/fonts/viaoda-libre/viaoda-libre.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="{{ '/assets/styles/main.min.css' | url }}">
+        
         <link rel="icon" type="image/ico" sizes="32x32" href="/assets/meta/favicon.ico">
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/meta/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/meta/favicon-32x32.png" />
@@ -17,13 +22,6 @@
         <meta name="msapplication-TileColor" content="#ececec" />
         <meta name="theme-color" content="#ECECEC" />
 
-        <!--<link rel="preload" href="/assets/fonts/firasans-light/firasans-light.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/assets/fonts/firasans-light/firasans-light-italic.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/assets/fonts/viaoda-libre/viaoda-libre.woff2" as="font" type="font/woff2" crossorigin />-->
-
-        <link rel="stylesheet" href="{{ '/assets/styles/main.min.css' | url }}">
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
-        
         <meta property="og:title" content="Quinn Tenorio {% if title %}|{% endif %} {% if title %}{{ title }}{% endif %}"/>
         <meta property="og:url" content={{ page.url | url }} />
         <meta property="og:description" content="{% if description %}{{ description }}
@@ -43,6 +41,7 @@
         <meta property="og:image" content="https://quinntenor.io/assets/meta/og-image-default.jpg" />
         {% endif %}
 
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     </head>
     <body>
         <div class="main-content">
