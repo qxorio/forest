@@ -8,7 +8,9 @@ const notionClient = new notionSDK.Client({
 
 // notion block parser
 const notionBlocks = require("@notion-stuff/blocks-html-parser");
-const notionBlockParser = notionBlocks.NotionBlocksHtmlParser.getInstance();
+const notionBlockParser = notionBlocks.NotionBlocksHtmlParser.getInstance({
+    mdParserOptions: { emptyParagraphToNonBreakingSpace: true },
+});
 
 exports.notionClient = notionClient;
 exports.notionBlockParser = notionBlockParser;
