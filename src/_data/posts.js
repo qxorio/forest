@@ -1,6 +1,8 @@
 require("dotenv").config();
 const notion = require("../_lib/utils").notionClient;
 const blockParser = require("../_lib/utils").notionBlockParser;
+const cloudinary = require("../_lib/utils").cloudinary;
+var slugify = require("slugify");
 
 const postDatabase = process.env.NOTION_POST_DB_ID;
 
@@ -22,7 +24,7 @@ module.exports = async () => {
         results = [...results, ...data.results];
     }
 
-    var posts = await Promise.all(results.map(getBlocks));
+    var posts = await Promise.all(results.map(getBlocksAndUploadImages));
 
     return posts
         .map((post) => {
@@ -45,7 +47,23 @@ function getCustomDate(date) {
     return new Date(date).toDateString().split(" ").splice(1).join(" ");
 }
 
-async function getBlocks(post) {
+async function getBlocksAndUploadImages(post) {
+    let directory = "posts/" + slugify(post.properties.Title.title[0].plain_text, { lower: true }) + "/";
+
+    // upload cover image
+    await cloudinary.uploader.upload(
+        post.properties.OGImage.files[0].file.url,
+        {
+            public_id: directory + post.properties.OGImage.files[0].name.split(".")[0],
+        },
+        function (err, res) {
+            if (err) console.warn(err);
+            post.properties.OGImage.files[0].file.url = res.secure_url;
+            return;
+        }
+    );
+
+    // get blocks
     var blocks = [];
 
     let blockPage = await notion.blocks.children.list({
@@ -63,7 +81,7 @@ async function getBlocks(post) {
         blocks = [...blocks, ...blockPage.results];
     }
 
-    blocks = blocks.map((block) => {
+    blocks = blocks.map(async (block) => {
         // shift all headings to be one level lower, to exclude h1 (used for the post title)
         if (block.type.startsWith("heading")) {
             const { heading, ...restOfBlock } = block;
@@ -78,8 +96,44 @@ async function getBlocks(post) {
             return newBlock;
         }
 
+        if (block.image) {
+            let filename = slugify(block.image.caption[0].plain_text, { lower: true });
+            switch (block.image.type) {
+                case "external":
+                    await cloudinary.uploader.upload(
+                        block.image.external.url,
+                        {
+                            public_id: directory + filename,
+                        },
+                        function (err, res) {
+                            if (err) console.warn(err);
+                            block.image.external.url = res.secure_url;
+                            return;
+                        }
+                    );
+                    return block;
+                case "file":
+                    await cloudinary.uploader.upload(
+                        block.image.file.url,
+                        {
+                            public_id: directory + filename,
+                        },
+                        function (err, res) {
+                            if (err) console.warn(err);
+                            block.image.file.url = res.secure_url;
+                            return;
+                        }
+                    );
+                    return block;
+                default:
+                    break;
+            }
+        }
+
         return block;
     });
+
+    blocks = await Promise.all(blocks);
 
     post.content = blockParser.parse(blocks);
     return post;
