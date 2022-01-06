@@ -46,7 +46,6 @@ module.exports = async () => {
     let newOgImages = await Promise.all(await updatedPosts.map(generateOg));
 
     newOgImages.forEach((element, index) => {
-        console.log(element);
         updatedPosts[index].ogImage = element;
     });
 
