@@ -36,7 +36,7 @@ module.exports = async () => {
                 title: post.properties.Title.title[0].plain_text,
                 body: post.content,
                 description: post.properties.Description.rich_text[0].plain_text,
-                ogImage: post.properties.OGImage.files[0].file.url,
+                ogImage: "",
             };
         })
         .sort((a, b) => {
@@ -59,19 +59,6 @@ function getCustomDate(date) {
 
 async function getBlocksAndUploadImages(post) {
     let directory = "posts/" + slugify(post.properties.Title.title[0].plain_text, { lower: true }) + "/";
-
-    // upload cover image
-    await cloudinary.uploader.upload(
-        post.properties.OGImage.files[0].file.url,
-        {
-            public_id: directory + post.properties.OGImage.files[0].name.split(".")[0],
-        },
-        function (err, res) {
-            if (err) console.warn(err);
-            post.properties.OGImage.files[0].file.url = res.secure_url;
-            return;
-        }
-    );
 
     // get blocks
     var blocks = [];

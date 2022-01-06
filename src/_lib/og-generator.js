@@ -23,8 +23,8 @@ async function generate(post) {
     context.fillText("quinn tenorio", canvas.width / 2, 100);
 
     context.fillStyle = "#000";
-    context.font = "80pt Viaoda Libre";
-    context.fillText(`${post.title}`, canvas.width / 2, canvas.height / 2 + 45);
+    context.font = "85pt Viaoda Libre";
+    context.fillText(`${post.title}`, canvas.width / 2, canvas.height / 2 + 40);
 
     // Add labels
     context.font = "35pt Fira Sans";
