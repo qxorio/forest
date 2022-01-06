@@ -2,6 +2,7 @@ require("dotenv").config();
 const notion = require("../_lib/utils").notionClient;
 const blockParser = require("../_lib/utils").notionBlockParser;
 const cloudinary = require("../_lib/utils").cloudinary;
+const generateOg = require("../_lib/og-generator").generateOgImage;
 var slugify = require("slugify");
 
 const postDatabase = process.env.NOTION_POST_DB_ID;
@@ -26,7 +27,7 @@ module.exports = async () => {
 
     var posts = await Promise.all(results.map(getBlocksAndUploadImages));
 
-    return posts
+    let updatedPosts = posts
         .map((post) => {
             return {
                 published: getCustomDate(post.created_time),
@@ -41,6 +42,15 @@ module.exports = async () => {
         .sort((a, b) => {
             return new Date(b.published) - new Date(a.published);
         });
+
+    let newOgImages = await Promise.all(await updatedPosts.map(generateOg));
+
+    newOgImages.forEach((element, index) => {
+        console.log(element);
+        updatedPosts[index].ogImage = element;
+    });
+
+    return updatedPosts;
 };
 
 function getCustomDate(date) {
