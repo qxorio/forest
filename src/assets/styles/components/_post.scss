@@ -5,7 +5,7 @@
         }
 
         h1 {
-            font-family: $font--display;
+            font-family: $font--text;
             font-size: 2.5em;
             font-weight: normal;
 
@@ -25,22 +25,20 @@
 
     a {
         display: inline-block;
-        color: $primary--color;
+        color: $primary-color-light;
         font-weight: bold;
-        text-decoration: underline;
     }
 
     blockquote {
-        color: $primary--color;
-        border-left: 5px solid $primary--color;
+        color: $primary-color-light;
+        border-left: 5px solid $primary-color-light;
         margin: 1em;
         padding-left: 1em;
     }
 
     code:not([class]) {
-        background-color: $secondary--color;
-        color: $primary--color;
-        //font-size: .8rem;
+        background-color: $secondary-color-dark;
+        color: $primary-color-light;
         padding: 0 0.4rem;
         border-radius: 0.3em;
     }

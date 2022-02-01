@@ -1,10 +1,14 @@
-$font--display: "Viaoda Libre", serif;
-$font--text: "FiraSans-Light", sans-serif;
+$font--text: "Fahkwang", sans-serif;
 
-$font--color: #1d1d1d;
-$background--color: #ececec;
-$primary--color: #3c5237;
-$secondary--color: #dadada;
+$primary-color-light: #527a51;
+$primary-color-medium: #446943;
+$primary-color-dark: #395c38;
+
+$primary-color-light-10: rgba(82, 122, 81, 0.1);
+$primary-color-light-25: rgba(82, 122, 81, 0.25);
+
+$secondary-color-dark: #333333;
+$secondary-color-light: #f8f8f8;
 
 $breakpoints: (
     sm: 26.75rem,

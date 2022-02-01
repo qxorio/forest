@@ -7,11 +7,11 @@
     <article class="book-on-shelf">
         <a href="{{ book.review }}">
             <img src="{{ book.cover }}" alt="{{ book.title }} book cover by {{ book.author }}">
-            <span>
+            <div>
                 <h3>{{ book.title }}</h3>
                 <p>{{ book.author }}</p>
                 <p>{{ book.rating }}</p>
-            </span>
+            </div>
         </a>
     </article>
 {% endfor %}

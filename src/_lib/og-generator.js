@@ -6,28 +6,27 @@ const width = 1200;
 const height = 630;
 
 async function generate(post) {
-    registerFont("./src/assets/fonts/viaoda-libre/viaoda-libre.woff", { family: "Viaoda Libre" });
-    registerFont("./src/assets/fonts/firasans-light/firasans-light.woff", { family: "Fira Sans" });
+    registerFont("./src/assets/fonts/fahkwang/fahkwang-regular.woff", { family: "Fahkwang" });
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext("2d");
 
     context.textAlign = "center";
 
-    context.fillStyle = "#ececec";
+    context.fillStyle = "#f8f8f8";
     context.fillRect(0, 0, width, height);
 
     // Add titles
-    context.fillStyle = "#3c5237";
-    context.font = "60pt Viaoda Libre";
+    context.fillStyle = "#527a51";
+    context.font = "60pt Fahkwang";
     context.fillText("quinn tenorio", canvas.width / 2, 100);
 
-    context.fillStyle = "#000";
-    context.font = "85pt Viaoda Libre";
+    context.fillStyle = "#333333";
+    context.font = "85pt Fahkwang";
     context.fillText(`${post.title}`, canvas.width / 2, canvas.height / 2 + 40);
 
     // Add labels
-    context.font = "35pt Fira Sans";
+    context.font = "35pt Fahkwang";
     context.fillText(`${post.published} • ${post.tags.join(", ")}`, canvas.width / 2, 575);
 
     const base64 = canvas.toDataURL("image/jpeg");

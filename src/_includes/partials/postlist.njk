@@ -1,6 +1,7 @@
 <h1 class="display-title">Posts</h1>
+<div class="post-list">
 {% for post in postlist %}
-    <article class="list-item">
+    <article class="post-item">
         <a href="/posts/{{ post.title | slug }}">
             <div>
                 <h2>{{ post.title }}</h2>
@@ -10,3 +11,4 @@
         </a>
     </article>
 {% endfor %}
+</div>
