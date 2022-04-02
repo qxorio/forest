@@ -1,8 +1,8 @@
-<h1 class="display-title">Posts</h1>
+<h1 class="display-title">Blog</h1>
 <div class="post-list">
 {% for post in postlist %}
     <article class="post-item">
-        <a href="/posts/{{ post.title | slug }}">
+        <a href="/blog/{{ post.title | slug }}">
             <div>
                 <h2>{{ post.title }}</h2>
                 <time>{{ post.published }}</time>

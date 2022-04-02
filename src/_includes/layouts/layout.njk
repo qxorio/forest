@@ -42,6 +42,7 @@
         {% endif %}
 
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+        <script src="https://kit.fontawesome.com/b2c665dea1.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="main-content">
@@ -49,8 +50,18 @@
                 <a href="/" class="nav-brand">Quinn Tenorio</a>
                 <ul>
                     <li>
-                        <a href="/posts" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
-                            >Posts</a
+                        <a href="/about" class="nav-item {% if page.url.includes('about') %}nav-item-active{% endif %}"
+                            >About</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/portfolio" class="nav-item {% if page.url.includes('portfolio') %}nav-item-active{% endif %}"
+                            >Portfolio</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/blog" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
+                            >Blog</a
                         >
                     </li>
                     <li>
@@ -62,7 +73,7 @@
             </nav>
             {% block content %} {{ content }} {% endblock %}
             <footer>
-                Made with <a href="https://11ty.dev">11ty</a> and love | &copy; {{now}} Quinn Tenorio
+                <span>&copy; 2022<span> <i></i> Quinn Tenorio
             </footer>
         </div>
     </body>

@@ -4,7 +4,7 @@ pagination:
     size: 1
     alias: post
     addAllPagesToCollections: true
-permalink:  "posts/{{ post.title | slug }}/index.html"
+permalink:  "blog/{{ post.title | slug }}/index.html"
 eleventyComputed: 
     title: "{{ post.title }}"
     description: "{{ post.description }}"
@@ -17,14 +17,10 @@ tags:
 <main>
     <article class="post-content">
         <header class="post-header">
-            <h1>{{ post.title }}</h1>
             <p>
-                <time>{{ post.published }}</time> 
-                {% if post.published != post.edited %}
-                &mdash; updated <time>{{post.edited}}</time>
-                {%endif%}
-                &bull; {{ post.tags.join(', ') }}
+                <time>{{ post.published }}</time>  {{ post.tags.join('<span></span> ') }}
             </p>
+            <h1>{{ post.title }}</h1>
         </header>
         <hr>
         {{ post.body | safe }}
