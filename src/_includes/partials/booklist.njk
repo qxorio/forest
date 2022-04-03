@@ -1,15 +1,16 @@
-<div class="display-title-with-disclaimer">
-    <h1>Bookshelf</h1>
-</div>
+<h1 class="page-title">Bookshelf</h1>
 <div class="bookshelf">
 {% for book in booklist %}
     <article class="book-on-shelf">
-        <a href="{{ book.review }}">
+        <a href="{{ book.review }}" target="_blank">
             <img src="{{ book.cover }}" alt="{{ book.title }} book cover by {{ book.author }}">
-            <div>
+            <div class="book-details">
                 <h3>{{ book.title }}</h3>
-                <p>{{ book.author }}</p>
-                <p>{{ book.rating }}</p>
+                <p class="author">{{ book.author }}</p>
+            </div>
+            <div class="rating-and-link">
+                <p class="rating">{{ book.rating }}</p>
+                <span><i class="fa-solid fa-link"></i></span>
             </div>
         </a>
     </article>

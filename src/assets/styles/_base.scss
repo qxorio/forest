@@ -1,15 +1,21 @@
 html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
 }
 
 html,
 body {
-    color: $secondary-color-dark;
-    background-color: $secondary-color-light;
+    color: $color--snow;
+    background-color: $color--void;
     font-family: $font--text;
-    font-size: 1.1rem;
     line-height: 1.2;
+}
+
+@include headings {
+    font-family: $font--heading;
+    font-weight: normal;
+    line-height: 1;
 }
 
 img {
@@ -18,12 +24,12 @@ img {
 
 a {
     text-decoration: none;
-    color: $primary-color-light;
+    color: $color--snow;
 
     &::after {
         content: "";
         display: block;
-        border-bottom: 1px solid $primary-color-light;
+        border-bottom: 1px solid $color--snow;
         width: 100%;
     }
 
@@ -34,74 +40,64 @@ a {
 
 hr {
     display: block;
-    height: 1px;
+    height: 2px;
     border: 0;
-    border-top: 1px solid $primary-color-medium;
+    background: $color--teal;
+    background: $gradient--horizontal;
     margin: 1em 0;
     padding: 0;
 }
 
+.fa-circle {
+    @include gradient(background, 205deg);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-solid,
+.fa-brands {
+    padding: 0.05rem;
+}
+
 .main-content {
-    padding: 0.5em;
+    padding: 0 0.75rem;
+    font-size: 1.125rem;
+    line-height: 1.5625rem;
 
     @include screen-query(md) {
         max-width: map-get($breakpoints, md);
+        padding: 0;
         margin: 0 auto;
-    }
-}
-
-.display-title {
-    font-family: $font--text;
-    font-size: 2.5em;
-    text-align: center;
-    font-weight: normal;
-    margin: 0.45em 0;
-    text-transform: lowercase;
-
-    @include screen-query(sm) {
-        font-size: 2.75em;
-    }
-}
-
-.display-title-with-disclaimer {
-    text-align: center;
-    margin: 2.5em 0;
-
-    @include headings {
-        font-family: $font--text;
-        font-size: 2.5em;
-        font-weight: normal;
-        margin: 0;
-        text-transform: lowercase;
-
-        @include screen-query(sm) {
-            font-size: 2.75em;
-        }
-    }
-
-    small {
-        font-style: italic;
     }
 }
 
 nav {
     text-align: center;
-    margin: 1.5em 0 2.5em;
+    margin: 3.125rem 0 4.6875rem;
     text-transform: lowercase;
 
     ul {
-        margin: 0.3em 0 0 0;
+        margin: 0;
         padding: 0;
         list-style: none;
+        --fa-li-margin: 0;
+
+        li {
+            display: inline-block;
+            margin: 0 0.25em;
+        }
+
+        li + li {
+            margin-left: 1.9rem;
+
+            & .fa-circle {
+                font-size: 0.5rem;
+            }
+        }
     }
 
-    li {
-        display: inline-block;
-        margin: 0 0.25em;
-        font-weight: bold;
-    }
-
-    @include screen-query(md) {
+    @include screen-query(sm) {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -109,11 +105,10 @@ nav {
 }
 
 .nav-brand {
-    font-size: 2.95em;
     display: inline-block;
 
-    @include screen-query(sm) {
-        font-size: 3.4em;
+    img {
+        width: 3.75rem;
     }
 
     &::after {
@@ -122,45 +117,93 @@ nav {
     }
 }
 
-.main-section {
-    margin-top: 3em;
+.display-title {
+    font-size: 4.375rem;
+
+    @include screen-query(sm) {
+        font-size: 4.375rem;
+    }
 }
 
 footer {
-    margin: 6em 0 1.5em 0;
-    text-align: center;
+    margin: 6rem 0 3.125rem;
     font-family: $font--text;
+    display: flex;
+    align-items: center;
+
+    .fa-circle {
+        font-size: 0.5rem;
+        margin: 0 0.5rem;
+    }
+
+    .name {
+        font-family: $font--display;
+        font-size: 1.5625rem;
+        text-transform: uppercase;
+        padding-bottom: 0.3125rem;
+    }
+}
+
+.inner-content {
+    margin: 0 auto;
+    @include screen-query(ib) {
+        max-width: map-get($breakpoints, ib);
+    }
+}
+
+.page-title {
+    font-family: $font--heading;
+    font-size: 3rem;
+    line-height: 2.125rem;
+    text-align: center;
+    font-weight: normal;
+    text-transform: lowercase;
+    margin: 0 0 2.5rem;
 }
 
 .post-item {
-    margin: 1rem 0;
+    border-radius: 15px;
+    @include gradient(background-image, 185deg);
+    margin: 1.5625rem 0;
+
+    &:hover a {
+        transform: translate(-5px, -5px);
+    }
 
     a {
-        padding: 0.7em 0.7em;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: $secondary-color-dark;
-
-        background-color: $primary-color-light-10;
+        padding: 0.625rem 0.75rem;
+        display: block;
+        @include gradient-border(185deg);
+        border: 2px solid transparent;
         border-radius: 15px;
-        border: 1px solid transparent;
 
-        h2 {
+        * {
             margin: 0;
         }
 
-        :first-child {
-            width: 100%;
+        div {
+            font-size: 0.875rem;
+            margin: 0.25rem 0;
+
+            span {
+                display: inline-flex;
+                align-items: center;
+                span {
+                    font-size: 0.3125rem;
+                    margin: 0 0.3125rem;
+                }
+            }
         }
 
-        :last-child {
-            width: 50%;
-            text-align: right;
+        h2 {
+            font-size: 2.25rem;
+            line-height: 2.125rem;
         }
 
-        &:hover {
-            background-color: $primary-color-light-25;
+        time {
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-right: 1.5625rem;
         }
 
         &::after {
@@ -170,100 +213,45 @@ footer {
     }
 }
 
-.see-more-container {
-    overflow: auto;
-
-    a {
-        font-weight: bold;
-        float: right;
-    }
-}
-
 .bookshelf {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
+    margin: 0 auto;
+    .book-on-shelf {
+        width: 10.625rem;
+        height: auto;
+        border-radius: 15px;
+        @include gradient(background-image, 225deg);
+        margin: 1.5625rem 0;
 
-    article {
+        &:hover a {
+            transform: translate(-5px, -5px);
+        }
+
         a {
-            padding: 0.7em 0.7em;
-            color: $secondary-color-dark;
-            display: flex;
-            align-content: center;
-
-            background-color: $primary-color-light-10;
+            padding: 0.875rem;
+            display: block;
+            @include gradient-border(225deg);
+            border: 2px solid transparent;
             border-radius: 15px;
-            border: 1px solid transparent;
+            * {
+                margin: 0;
+            }
 
-            div {
-                text-align: center;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
+            .book-details {
+                margin: 0 0 0.1875rem;
 
-                * {
-                    margin-top: 0;
-                    margin-bottom: 0.25em;
+                .author {
+                    opacity: 0.75;
+                }
+
+                h3 {
+                    font-family: $font--text;
+                    line-height: 1.375rem;
                 }
             }
 
-            img {
-                height: 11em;
-                margin-right: 0.5em;
-            }
-
-            &:hover {
-                background-color: $primary-color-light-25;
-            }
-
-            &::after {
-                border: none;
-                width: 0;
-            }
-        }
-    }
-}
-
-.social-accounts {
-    padding-left: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
-    gap: 1rem;
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 2rem;
-
-    li {
-        list-style: none;
-        margin: 0;
-
-        a {
-            padding: 0.7em 0.7em;
-            color: $secondary-color-dark;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-
-            background-color: $primary-color-light-10;
-            border-radius: 15px;
-            border: 1px solid transparent;
-
-            svg {
-                width: 1rem;
-                height: 1rem;
-            }
-
-            span {
-                line-height: 1em;
-                position: relative;
-                top: 1px;
-                margin-left: 0.25rem;
-            }
-
-            &:hover {
-                background-color: $primary-color-light-25;
+            .rating-and-link {
+                display: flex;
+                justify-content: space-between;
             }
 
             &::after {
@@ -275,14 +263,50 @@ footer {
 }
 
 .about-section {
-    p a {
-        font-weight: bold;
-        display: inline-block;
+    p {
+        text-align: justify;
     }
-}
 
-footer a,
-.link-styling {
-    display: inline-block;
-    font-weight: bold;
+    .social-accounts {
+        margin-top: 2.5rem;
+        text-align: center;
+
+        ul {
+            padding: 0;
+            display: inline-flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        li {
+            list-style: none;
+            display: inline-block;
+            @include gradient(background-image, 205deg);
+            border-radius: 50%;
+
+            a {
+                color: $color--void;
+                display: flex;
+                justify-content: center;
+                width: 2.75rem;
+                height: 2.75rem;
+                border-radius: 50%;
+
+                span {
+                    display: flex;
+                    align-items: center;
+
+                    i {
+                        font-size: 24px;
+                    }
+                }
+
+                &::after {
+                    border: none;
+                    width: 0;
+                }
+            }
+        }
+    }
 }

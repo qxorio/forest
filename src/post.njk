@@ -14,11 +14,11 @@ tags:
 {% extends 'layouts/layout.njk' %}
 
 {% block content %}
-<main>
+<main class="inner-content">
     <article class="post-content">
         <header class="post-header">
             <p>
-                <time>{{ post.published }}</time>  {{ post.tags.join('<span></span> ') }}
+                <time>{{ post.published }}</time>  {{ post.tags.join('<span class="fa-solid fa-circle"></span> ') }}
             </p>
             <h1>{{ post.title }}</h1>
         </header>

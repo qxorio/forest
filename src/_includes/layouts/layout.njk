@@ -9,9 +9,6 @@
         <meta name="description" content="{% if description %}{{ description }}
             {% else %}The personal site of Quinn Tenorio{% endif %}" />
 
-        <link rel="preload" href="/assets/fonts/fahkwang/fahkwang-bold.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/assets/fonts/fahkwang/fahkwang-italic.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/assets/fonts/fahkwang/fahkwang-regular.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="{{ '/assets/styles/main.min.css' | url }}">
         
         <link rel="icon" type="image/ico" sizes="32x32" href="/assets/meta/favicon.ico">
@@ -43,28 +40,32 @@
 
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
         <script src="https://kit.fontawesome.com/b2c665dea1.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bricks.js/1.1.1/bricks.min.js"></script>
     </head>
     <body>
         <div class="main-content">
             <nav>
-                <a href="/" class="nav-brand">Quinn Tenorio</a>
-                <ul>
+                <a href="/" class="nav-brand"><img src="/assets/images/logo-gradient-dark.svg" alt="Quinn Tenorio logo"></a>
+                <ul class="fa-ul">
                     <li>
                         <a href="/about" class="nav-item {% if page.url.includes('about') %}nav-item-active{% endif %}"
                             >About</a
                         >
                     </li>
                     <li>
+                        <span class="fa-li"><i class="fa-solid fa-circle"></i></span>
                         <a href="/portfolio" class="nav-item {% if page.url.includes('portfolio') %}nav-item-active{% endif %}"
                             >Portfolio</a
                         >
                     </li>
                     <li>
+                        <span class="fa-li"><i class="fa-solid fa-circle"></i></span>
                         <a href="/blog" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
                             >Blog</a
                         >
                     </li>
                     <li>
+                        <span class="fa-li"><i class="fa-solid fa-circle"></i></span>
                         <a href="/bookshelf" class="nav-item {% if page.url.includes('bookshelf') %}nav-item-active{% endif %}"
                             >Bookshelf</a
                         >
@@ -73,7 +74,7 @@
             </nav>
             {% block content %} {{ content }} {% endblock %}
             <footer>
-                <span>&copy; 2022<span> <i></i> Quinn Tenorio
+                <span>&copy; 2022 </span><span class="fa-solid fa-circle"></span> <span class="name">Quinn Tenorio</span>
             </footer>
         </div>
     </body>
