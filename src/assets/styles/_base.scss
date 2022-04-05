@@ -23,18 +23,12 @@ img {
 }
 
 a {
-    text-decoration: none;
     color: $color--snow;
+    text-underline-offset: 0.1875rem;
 
-    &::after {
-        content: "";
-        display: block;
-        border-bottom: 1px solid $color--snow;
-        width: 100%;
-    }
-
-    &:hover::after {
-        width: 0;
+    &:hover {
+        color: $color--teal;
+        text-decoration: none;
     }
 }
 
@@ -44,7 +38,7 @@ hr {
     border: 0;
     background: $color--teal;
     background: $gradient--horizontal;
-    margin: 1em 0;
+    margin: 1.25em 0;
     padding: 0;
 }
 
@@ -106,14 +100,10 @@ nav {
 
 .nav-brand {
     display: inline-block;
+    text-decoration: none;
 
     img {
         width: 3.75rem;
-    }
-
-    &::after {
-        border: none;
-        width: 0;
     }
 }
 
@@ -161,6 +151,11 @@ footer {
     margin: 0 0 2.5rem;
 }
 
+.post-item a:hover,
+.book-on-shelf a:hover {
+    color: $color--snow;
+}
+
 .post-item {
     border-radius: 15px;
     @include gradient(background-image, 185deg);
@@ -176,6 +171,7 @@ footer {
         @include gradient-border(185deg);
         border: 2px solid transparent;
         border-radius: 15px;
+        text-decoration: none;
 
         * {
             margin: 0;
@@ -184,6 +180,7 @@ footer {
         div {
             font-size: 0.875rem;
             margin: 0.25rem 0;
+            line-height: 1.125rem;
 
             span {
                 display: inline-flex;
@@ -206,15 +203,16 @@ footer {
             margin-right: 1.5625rem;
         }
 
-        &::after {
-            border: none;
-            width: 0;
+        p {
+            font-size: 1rem;
+            line-height: 1.25rem;
         }
     }
 }
 
 .bookshelf {
     margin: 0 auto;
+
     .book-on-shelf {
         width: 10.625rem;
         height: auto;
@@ -232,31 +230,30 @@ footer {
             @include gradient-border(225deg);
             border: 2px solid transparent;
             border-radius: 15px;
+            text-decoration: none;
+
             * {
                 margin: 0;
+                font-size: 1rem;
             }
 
             .book-details {
                 margin: 0 0 0.1875rem;
 
                 .author {
-                    opacity: 0.75;
+                    opacity: 0.7;
                 }
 
                 h3 {
                     font-family: $font--text;
                     line-height: 1.375rem;
+                    font-size: 1.125rem;
                 }
             }
 
             .rating-and-link {
                 display: flex;
                 justify-content: space-between;
-            }
-
-            &::after {
-                border: none;
-                width: 0;
             }
         }
     }
@@ -292,6 +289,7 @@ footer {
                 width: 2.75rem;
                 height: 2.75rem;
                 border-radius: 50%;
+                text-decoration: none;
 
                 span {
                     display: flex;
@@ -300,11 +298,6 @@ footer {
                     i {
                         font-size: 24px;
                     }
-                }
-
-                &::after {
-                    border: none;
-                    width: 0;
                 }
             }
         }

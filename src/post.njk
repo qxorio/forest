@@ -17,9 +17,10 @@ tags:
 <main class="inner-content">
     <article class="post-content">
         <header class="post-header">
-            <p>
-                <time>{{ post.published }}</time>  {{ post.tags.join('<span class="fa-solid fa-circle"></span> ') }}
-            </p>
+            <div>
+                <time>{{ post.published }}</time>
+                <span>{{ post.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
+            </div>
             <h1>{{ post.title }}</h1>
         </header>
         <hr>
