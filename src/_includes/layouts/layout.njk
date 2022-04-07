@@ -45,8 +45,8 @@
     <body>
         <div class="main-content">
             <nav>
-                <a href="/" class="nav-brand"><img src="/assets/images/logo-gradient-dark.svg" alt="Quinn Tenorio logo"></a>
-                <ul class="fa-ul">
+                <a href="/" class="nav-brand" title="Quinn Tenorio"><img src="/assets/images/logo-gradient-dark.svg" alt="Quinn Tenorio logo"></a>
+                <ul class="fa-ul inline-navigation">
                     <li>
                         <a href="/about" class="nav-item {% if page.url.includes('about') %}nav-item-active{% endif %}"
                             >About</a
@@ -60,7 +60,7 @@
                     </li>
                     <li>
                         <span class="fa-li"><i class="fa-solid fa-circle"></i></span>
-                        <a href="/blog" class="nav-item {% if page.url.includes('posts') %}nav-item-active{% endif %}"
+                        <a href="/blog" class="nav-item {% if page.url.includes('blog') %}nav-item-active{% endif %}"
                             >Blog</a
                         >
                     </li>
@@ -71,6 +71,28 @@
                         >
                     </li>
                 </ul>
+                <div class="menu-navigation">
+                    <input type="checkbox" />
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    
+                    <ul class="menu-link-list">
+                        <li><a href="/about" class="nav-item {% if page.url.includes('about') %}nav-item-active{% endif %}"
+                            >About</a
+                        ></li>
+                        <li><a href="/portfolio" class="nav-item {% if page.url.includes('portfolio') %}nav-item-active{% endif %}"
+                            >Portfolio</a
+                        ></li>
+                        <li><a href="/blog" class="nav-item {% if page.url.includes('blog') %}nav-item-active{% endif %}"
+                            >Blog</a
+                        ></li>
+                        <li><a href="/bookshelf" class="nav-item {% if page.url.includes('bookshelf') %}nav-item-active{% endif %}"
+                            >Bookshelf</a
+                        ></li>
+                    </ul>
+                </div>
             </nav>
             {% block content %} {{ content }} {% endblock %}
             <footer>

@@ -8,7 +8,7 @@
                 <time>{{ post.published }}</time>
                 <span>{{ post.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
             </div>
-            <p>{{ (post.body.substring(3, post.body.indexOf('.')) + '...') }}</p>
+            <p>{{ post.description }}</p>
         </a>
     </article>
 {% endfor %}
