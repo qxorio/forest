@@ -6,8 +6,10 @@ eleventyComputed:
 {% extends 'layouts/layout.njk' %}
 
 {% block content %}
-<main>
+<main class="inner-content">
     {% set booklist = books %}
     {% include "partials/booklist.njk" %}
 </main>
+
+<script src="/assets/js/bookshelf-grid.js"></script>
 {% endblock %}

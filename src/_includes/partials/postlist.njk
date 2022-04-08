@@ -1,13 +1,14 @@
-<h1 class="display-title">Posts</h1>
+<h1 class="page-title">Blog</h1>
 <div class="post-list">
 {% for post in postlist %}
     <article class="post-item">
-        <a href="/posts/{{ post.title | slug }}">
+        <a href="/blog/{{ post.title | slug }}">
+            <h2>{{ post.title }}</h2>
             <div>
-                <h2>{{ post.title }}</h2>
                 <time>{{ post.published }}</time>
+                <span>{{ post.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
             </div>
-            <span>{{ post.tags.join(', ') }}</span>
+            <p>{{ post.description }}</p>
         </a>
     </article>
 {% endfor %}

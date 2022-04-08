@@ -15,3 +15,12 @@
         @content;
     }
 }
+
+@mixin gradient($property, $angle) {
+    #{$property}: linear-gradient($angle, $color--pinky 24.5%, $color--teal 67%);
+}
+
+@mixin gradient-border($angle) {
+    background: linear-gradient($color--void, $color--void) padding-box,
+        linear-gradient($angle, $color--pinky 24.5%, $color--teal 67%) border-box;
+}

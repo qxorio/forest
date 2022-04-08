@@ -4,7 +4,7 @@ pagination:
     size: 1
     alias: post
     addAllPagesToCollections: true
-permalink:  "posts/{{ post.title | slug }}/index.html"
+permalink:  "blog/{{ post.title | slug }}/index.html"
 eleventyComputed: 
     title: "{{ post.title }}"
     description: "{{ post.description }}"
@@ -14,17 +14,14 @@ tags:
 {% extends 'layouts/layout.njk' %}
 
 {% block content %}
-<main>
+<main class="inner-content">
     <article class="post-content">
         <header class="post-header">
+            <div>
+                <time>{{ post.published }}</time>
+                <span>{{ post.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
+            </div>
             <h1>{{ post.title }}</h1>
-            <p>
-                <time>{{ post.published }}</time> 
-                {% if post.published != post.edited %}
-                &mdash; updated <time>{{post.edited}}</time>
-                {%endif%}
-                &bull; {{ post.tags.join(', ') }}
-            </p>
         </header>
         <hr>
         {{ post.body | safe }}
