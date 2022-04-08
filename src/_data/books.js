@@ -23,10 +23,11 @@ module.exports = async () => {
 
     return results
         .map((book) => {
+            console.log(book.properties.Rating.number);
             return {
                 read: getCustomDate(book.properties.Read.date.start),
                 author: book.properties.Author.rich_text[0].plain_text,
-                rating: book.properties.Rating.rich_text[0].plain_text,
+                rating: new Array(book.properties.Rating.number).fill(""),
                 title: book.properties.Title.title[0].plain_text,
                 cover: book.properties.Cover.files[0].name,
                 review: book.properties.Review.url,

@@ -8,10 +8,16 @@
                 <h3>{{ book.title }}</h3>
                 <p class="author">{{ book.author }}</p>
             </div>
+            {% if book.reading %}
+            <p class="reading">Reading now</p>
+            {% else %}
             <div class="rating-and-link">
-                <p class="rating">{{ book.rating }}</p>
-                <span><i class="fa-solid fa-link"></i></span>
+                <p class="rating">
+                    {% for star in book.rating %}<span><i class="fa-solid fa-star"></i></span>{% endfor %}
+                </p>
+                <span class="link-icon"><i class="fa-solid fa-link"></i></span>
             </div>
+            {% endif %}
         </a>
     </article>
 {% endfor %}

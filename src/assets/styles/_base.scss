@@ -122,7 +122,7 @@ nav {
 }
 
 .display-title {
-    font-size: 4.375rem;
+    font-size: 2.5rem;
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -130,6 +130,12 @@ nav {
     user-select: none;
 
     @include screen-query(sm) {
+        font-size: 3rem;
+    }
+    @include screen-query(ib) {
+        font-size: 3.75rem;
+    }
+    @include screen-query(md) {
         font-size: 4.375rem;
     }
 }
@@ -168,6 +174,10 @@ footer {
     font-weight: normal;
     text-transform: lowercase;
     margin: 0 0 2.5rem;
+}
+
+.page-subtitle {
+    text-align: center;
 }
 
 .post-item a:hover,
@@ -239,7 +249,7 @@ footer {
         @include gradient(background-image, 225deg);
         margin: 1.5625rem 0;
 
-        &:hover a {
+        &:hover a[href^="https"] {
             transform: translate(-5px, -5px);
         }
 
@@ -251,13 +261,18 @@ footer {
             border-radius: 15px;
             text-decoration: none;
 
+            &[href^="#"] {
+                cursor: default;
+                pointer-events: none;
+            }
+
             * {
                 margin: 0;
                 font-size: 1rem;
             }
 
             .book-details {
-                margin: 0 0 0.1875rem;
+                margin: 0 0 0.1875rem 0;
 
                 .author {
                     opacity: 0.7;
@@ -270,9 +285,22 @@ footer {
                 }
             }
 
+            .reading {
+                line-height: 1;
+                opacity: 0.6;
+            }
+
             .rating-and-link {
                 display: flex;
                 justify-content: space-between;
+                line-height: 1;
+
+                .fa-star {
+                    @include gradient(background, 205deg);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
             }
         }
     }
