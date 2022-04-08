@@ -23,7 +23,6 @@ module.exports = async () => {
 
     return results
         .map((book) => {
-            console.log(book.properties.Rating.number);
             return {
                 read: getCustomDate(book.properties.Read.date.start),
                 author: book.properties.Author.rich_text[0].plain_text,
