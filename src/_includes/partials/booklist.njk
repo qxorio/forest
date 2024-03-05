@@ -10,6 +10,8 @@
             </div>
             {% if book.reading %}
             <p class="reading">Reading now</p>
+            {% elif book.dnf %}
+            <p class="reading">DNF</p>
             {% else %}
             <div class="rating-and-link">
                 <p class="rating">

@@ -31,6 +31,7 @@ module.exports = async () => {
                 cover: book.properties.Cover.files[0].name,
                 review: book.properties.Review.url,
                 reading: book.properties.Reading.checkbox,
+                dnf: book.properties.DNF.checkbox,
             };
         })
         .sort((a, b) => {
