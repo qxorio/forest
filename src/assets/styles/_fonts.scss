@@ -27,3 +27,10 @@
     src: local(""), url("/assets/fonts/sora/sora-regular.woff2") format("woff2"),
         url("/assets/fonts/sora/sora-regular.woff") format("woff");
 }
+
+@font-face {
+    font-family: "Switzer";
+    src: url("/assets/fonts/switzer/Switzer-Variable.woff2") format("woff2 supports variations"),
+        url("/assets/fonts/switzer/Switzer-Variable.woff2") format("woff2-variations");
+    font-weight: 100 900;
+}

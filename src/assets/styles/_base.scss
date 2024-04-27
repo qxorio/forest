@@ -1,26 +1,69 @@
 html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
+    font-size: $default--font-size;
 }
 
 html,
 body {
     color: $color--snow;
-    background-color: $color--void;
+    background-color: $color--clay;
     font-family: $font--text;
     line-height: 1.2;
+
+    &:before,
+    &:after {
+        content: "";
+        position: fixed;
+        background: $color--snow;
+    }
+}
+
+body {
+    padding: 2rem;
+
+    &:before,
+    &:after {
+        left: 0;
+        right: 0;
+        height: 1rem;
+    }
+
+    &:before {
+        top: 0;
+    }
+
+    &:after {
+        bottom: 0;
+    }
+}
+
+html {
+    &:before,
+    &:after {
+        top: 0;
+        bottom: 0;
+        width: 1rem;
+    }
+
+    &:before {
+        left: 0;
+    }
+
+    &:after {
+        right: 0;
+    }
 }
 
 @include headings {
-    font-family: $font--heading;
+    font-family: $font--text;
     font-weight: normal;
     line-height: 1;
 }
 
 ::selection {
     background: $color--snow;
-    color: $color--void;
+    color: $color--clay;
 }
 
 img {
@@ -47,6 +90,42 @@ hr {
     padding: 0;
 }
 
+nav {
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav-brand {
+        display: inline-block;
+        img {
+            height: 60px;
+            width: auto;
+            max-width: unset;
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 1rem;
+
+        li {
+            font-size: 1.25em;
+            font-weight: 700;
+            text-transform: uppercase;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+/*
 .fa-circle {
     @include gradient(background, 205deg);
     background-clip: text;
@@ -122,12 +201,10 @@ nav {
 }
 
 .display-title {
+    font-family: "Switzer", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     font-size: 2.5rem;
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 
     @include screen-query(sm) {
         font-size: 3rem;
@@ -437,3 +514,4 @@ footer {
         display: block;
     }
 }
+*/
