@@ -6,28 +6,7 @@ $color--void: #000000;
 $color--snow: #ffffff;
 $color--ash: #f6f6f6;
 
-$font--old: "Sora Light", sans-serif;
-$font--heading: "Paper Orange", serif;
-$font--display: "Paper Orange", serif;
-
 $default--font-size: 16px;
-
-$color--teal: #48a175;
-$color--sea-glass: #76c29c;
-$color--pinky: #f1b0a7;
-
-$gradient--horizontal: linear-gradient(90deg, $color--teal 19%, $color--pinky 93%);
-$gradient--vertical: linear-gradient(0deg, $color--teal 19%, $color--pinky 93%);
-
-$primary-color-light: #527a51;
-$primary-color-medium: #446943;
-$primary-color-dark: #395c38;
-
-$primary-color-light-10: rgba(82, 122, 81, 0.1);
-$primary-color-light-25: rgba(82, 122, 81, 0.25);
-
-$secondary-color-dark: #333333;
-$secondary-color-light: #f8f8f8;
 
 $breakpoints: (
     sm: 26.75rem,

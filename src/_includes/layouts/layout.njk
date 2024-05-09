@@ -44,7 +44,7 @@
     </head>
     <body>
         <div class="main-content">
-            <nav id="nav" class="nav">
+            {# <nav id="nav" class="nav">
                 <a href="/" class="nav-brand" title="Quinn Tenorio"><img src="/assets/images/logo.svg" alt="Quinn Tenorio logo"></a>
                 <ul class="inline-navigation">
                     <li>
@@ -63,6 +63,15 @@
                         >
                     </li>
                 </ul>
+            </nav> #}
+            <span class="menu-toggle"></span>
+            <nav>
+                <div class="menu">
+                    <a href="#" class="menu-link">story</a>
+                    <a href="#" class="menu-link">studio albums</a>
+                    <a href="#" class="menu-link">studio EPs</a>
+                    <a href="#" class="menu-link">contact</a>
+                </div>
             </nav>
             {% block content %} {{ content }} {% endblock %}
             {% if index %}
@@ -71,7 +80,45 @@
             </footer>
             {% endif %}
         </div>
+
+        <div id="left" aria-hidden="true"></div>
+        <div id="right" aria-hidden="true"></div>
+        <div id="top" aria-hidden="true"></div>
+        <div id="bottom" aria-hidden="true"></div>
     </body>
 </html>
 
 
+<script>
+    class Menu {
+        constructor(element) {
+            this.menu = {
+                element: element
+            };
+            this.menu.toggle = document.querySelector('.menu-toggle');
+            this.menu.toggle.addEventListener('click', () => this.handleMenu());
+            this.menu.menuLinks = document.querySelectorAll('nav .menu-link');
+        }
+
+        handleMenu() {
+            let elem = this.menu.element;
+            let action = !this.menu.element.classList.contains('menu-visible') ? 'add' : 'remove';
+            
+            if (action == 'add') {
+                elem.classList.add('menu-visible', 'move-in');
+                setTimeout(() => {
+                    elem.classList.add('menu-move');
+                }, 100);
+            } else {
+                elem.classList.remove('move-in');
+                elem.classList.add('move-out');
+                elem.classList.remove('menu-move');
+                setTimeout(() => {
+                    elem.classList.remove('menu-visible', 'move-out');
+                }, 600);
+            }
+        }
+    }
+
+    const navMenu = new Menu(document.querySelector('nav'));
+</script>
