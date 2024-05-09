@@ -107,30 +107,34 @@ nav {
     color: $color--snow;
     position: relative;
     transition: color 0.3s;
+    top: -50%;
+    opacity: 0;
+}
+
+.menu-link.change {
+    top: 0;
+    opacity: 1;
+}
+
+.menu-link.move-in {
+    transition: all 0.7s ease-out;
+}
+.menu-link.move-out {
+    transition: all 0.2s ease-in-out;
+}
+
+@for $i from 0 through 3 {
+    .menu .menu-link.move-in:nth-child(#{$i + 1}) {
+        transition-delay: 0.12s * $i;
+    }
+    .menu .menu-link.move-out:nth-child(#{$i + 1}) {
+        transition-delay: 0.12s * $i;
+    }
 }
 
 .menu-link:hover {
     color: $color--clay;
 }
-
-/* .menu-link::after {
-    content: "";
-    width: 100%;
-    top: 58%;
-    height: 8px;
-    background-color: aliceblue;
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    transform: scale3d(0, 1, 1);
-    transition: transform 0.3s, opacity 0.3s;
-    transform-origin: 100% 50%;
-}
-
-.menu-link:hover::after {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-} */
 
 nav.menu-visible {
     visibility: visible;

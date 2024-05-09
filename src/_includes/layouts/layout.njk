@@ -102,19 +102,40 @@
 
         handleMenu() {
             let elem = this.menu.element;
+            let links = this.menu.menuLinks;
             let action = !this.menu.element.classList.contains('menu-visible') ? 'add' : 'remove';
             
             if (action == 'add') {
                 elem.classList.add('menu-visible', 'move-in');
+                links.forEach((link) => {
+                    link.classList.add('move-in');
+                });
                 setTimeout(() => {
                     elem.classList.add('menu-move');
+                    links.forEach((link) => {
+                        link.classList.add('change');
+                    });
                 }, 100);
             } else {
+                links.forEach((link) => {
+                    link.classList.remove('move-in');
+                });
                 elem.classList.remove('move-in');
+
+                links.forEach((link) => {
+                    link.classList.add('move-out');
+                });
                 elem.classList.add('move-out');
+
+                links.forEach((link) => {
+                    link.classList.remove('change');
+                });
                 elem.classList.remove('menu-move');
                 setTimeout(() => {
                     elem.classList.remove('menu-visible', 'move-out');
+                    links.forEach((link) => {
+                        link.classList.remove('move-out');
+                    });
                 }, 600);
             }
         }
