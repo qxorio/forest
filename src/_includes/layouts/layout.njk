@@ -43,9 +43,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bricks.js/1.1.1/bricks.min.js"></script>
     </head>
     <body>
-        <div class="main-content">
-            {# <nav id="nav" class="nav">
-                <a href="/" class="nav-brand" title="Quinn Tenorio"><img src="/assets/images/logo.svg" alt="Quinn Tenorio logo"></a>
+        <header>
+            <a href="/" class="nav-brand" title="Quinn Tenorio" tabindex="0"><img src="/assets/images/logo.svg" alt="Quinn Tenorio logo"></a>
+            <nav id="desktopNav" class="nav">
                 <ul class="inline-navigation">
                     <li>
                         <a href="/blog" class="nav-item {% if page.url.includes('blog') %}nav-item-active{% endif %}"
@@ -63,28 +63,34 @@
                         >
                     </li>
                 </ul>
-            </nav> #}
-            <span class="menu-toggle"></span>
-            <nav>
+            </nav>
+            <button class="menu-toggle" aria-label="Open navigation menu" aria-controls="mobileNav" aria-expanded="false">
+                <svg width="62" height="60" viewBox="0 0 62 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60.3109 21.4967C59.101 15.544 56.0823 10.6379 51.2427 6.77831C46.4092 2.91875 41.0192 0.710699 35.0665 0.154149C29.1138 -0.402402 23.4636 0.547364 18.1159 3.01554C12.7682 5.47768 8.35206 9.1497 4.86757 14.0316C1.37703 18.9135 0.124789 24.2371 1.09875 30.0022C2.07272 35.7673 3.96015 41.0667 6.74895 45.9062C9.53775 50.7398 13.4699 54.5328 18.5333 57.2732C23.6028 60.0136 28.9263 60.6911 34.5039 59.2937C40.0815 57.8963 45.6893 55.8516 51.3153 53.1535C56.9413 50.4554 60.1476 45.9909 60.94 39.76C61.7325 33.529 61.5208 27.4372 60.3109 21.4846V21.4967Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <nav id="mobileNav">
                 <div class="menu">
-                    <a href="#" class="menu-link">story</a>
-                    <a href="#" class="menu-link">studio albums</a>
-                    <a href="#" class="menu-link">studio EPs</a>
-                    <a href="#" class="menu-link">contact</a>
+                    <a href="/blog" class="menu-link {% if page.url.includes('blog') %}nav-item-active{% endif %}">Blog</a>
+                    <a href="/books" class="menu-link {% if page.url.includes('books') %}nav-item-active{% endif %}">Books</a>
+                    <a href="/media" class="menu-link {% if page.url.includes('media') %}nav-item-active{% endif %}">Media</a>
                 </div>
             </nav>
-            {% block content %} {{ content }} {% endblock %}
-            {% if index %}
-            <footer>
-                <span>&copy; 2022 </span> <span class="name">Quinn Tenorio</span>
-            </footer>
-            {% endif %}
-        </div>
+        </header>
+        {% block content %} {{ content }} {% endblock %}
+        {% if index %}
+        <footer>
+            <a href="mailto:hey@quinntenor.io">Email</a>
+            <a href="https://linkedin.com/in/quinntenorio">LinkedIn</a>
+            <a href="https://twitter.com/qxorio">Twitter</a>
+            <a href="https://instagram.com/quinn.tenorio">Instagram</a>
+        </footer>
+        {% endif %}
 
-        <div id="left" aria-hidden="true"></div>
+        {# <div id="left" aria-hidden="true"></div>
         <div id="right" aria-hidden="true"></div>
         <div id="top" aria-hidden="true"></div>
-        <div id="bottom" aria-hidden="true"></div>
+        <div id="bottom" aria-hidden="true"></div> #}
     </body>
 </html>
 
@@ -93,19 +99,19 @@
     class Menu {
         constructor(element) {
             this.menu = {
-                element: element
+                element: element,
+                toggle: document.querySelector('.menu-toggle'),
+                menuLinks: document.querySelectorAll('nav#mobileNav .menu-link'),
+                visible: false
             };
-            this.menu.toggle = document.querySelector('.menu-toggle');
             this.menu.toggle.addEventListener('click', () => this.handleMenu());
-            this.menu.menuLinks = document.querySelectorAll('nav .menu-link');
         }
 
         handleMenu() {
             let elem = this.menu.element;
             let links = this.menu.menuLinks;
-            let action = !this.menu.element.classList.contains('menu-visible') ? 'add' : 'remove';
             
-            if (action == 'add') {
+            if (!this.menu.visible) {
                 elem.classList.add('menu-visible', 'move-in');
                 links.forEach((link) => {
                     link.classList.add('move-in');
@@ -115,31 +121,42 @@
                     links.forEach((link) => {
                         link.classList.add('change');
                     });
+                    this.menu.toggle.classList.add('active');
+                    this.menu.toggle.ariaLabel = 'Close navigation menu';
+                    debugger;
+                    this.menu.toggle.setAttribute('aria-expanded', (!this.menu.visible).toString());
                 }, 100);
+                setTimeout(() => {
+                    links.forEach((link) => {
+                        link.classList.add('move-out');
+                    });
+                    elem.classList.add('move-out');
+
+                    links.forEach((link) => {
+                        link.classList.remove('move-in');
+                    });
+                    elem.classList.remove('move-in');
+                }, 1000);
             } else {
-                links.forEach((link) => {
-                    link.classList.remove('move-in');
-                });
-                elem.classList.remove('move-in');
-
-                links.forEach((link) => {
-                    link.classList.add('move-out');
-                });
-                elem.classList.add('move-out');
-
                 links.forEach((link) => {
                     link.classList.remove('change');
                 });
                 elem.classList.remove('menu-move');
+                this.menu.toggle.classList.remove('active');
+                this.menu.toggle.ariaLabel = 'Open navigation menu';
+                this.menu.toggle.ariaExpanded = (!this.menu.visible).toString();
+
                 setTimeout(() => {
                     elem.classList.remove('menu-visible', 'move-out');
                     links.forEach((link) => {
                         link.classList.remove('move-out');
                     });
-                }, 600);
+                }, 1000);
             }
+
+            this.menu.visible = !this.menu.visible;
         }
     }
 
-    const navMenu = new Menu(document.querySelector('nav'));
+    const navMenu = new Menu(document.querySelector('nav#mobileNav'));
 </script>
