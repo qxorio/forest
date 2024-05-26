@@ -58,6 +58,7 @@ header:not(.post-header) {
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+    filter: drop-shadow(0 0 6px #44342c);
 
     .nav-brand {
         z-index: 1000;

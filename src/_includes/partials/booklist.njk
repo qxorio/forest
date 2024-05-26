@@ -1,13 +1,37 @@
 <h1 class="page-title">Bookshelf</h1>
 <div class="bookshelf">
-{% for book in booklist %}
-    <article class="book-on-shelf">
-        <a href="{{ book.review }}" target="_blank">
+    <div class="book-scroller">
+    {% for book in booklist %}
+        <article class="book-on-shelf">
+            <a>
+                <img src="{{ book.cover }}" alt="{{ book.title }} book cover by {{ book.author }}">
+                <div class="book-details">
+                    <h3>{{ book.title }}</h3>
+                    <p class="author">{{ book.author }}</p>
+                </div>
+                {% if book.reading %}
+                <p class="reading">Reading now</p>
+                {% elif book.dnf %}
+                <p class="reading">DNF</p>
+                {% else %}
+                <div class="rating-and-link">
+                    <p class="rating">
+                        {% for star in book.rating %}<span><i class="fa-solid fa-star"></i></span>{% endfor %}
+                    </p>
+                    <span class="link-icon"><i class="fa-solid fa-link"></i></span>
+                </div>
+                {% endif %}
+            </a>
+        </article>
+    {% endfor %}
+    </div>
+    <div class="book-viewer">
+    {% for book in booklist %}
+        <article class="book-details" hidden>
             <img src="{{ book.cover }}" alt="{{ book.title }} book cover by {{ book.author }}">
-            <div class="book-details">
-                <h3>{{ book.title }}</h3>
-                <p class="author">{{ book.author }}</p>
-            </div>
+            <h3>{{ book.title }}</h3>
+            <p class="author">{{ book.author }}</p>
+
             {% if book.reading %}
             <p class="reading">Reading now</p>
             {% elif book.dnf %}
@@ -20,7 +44,8 @@
                 <span class="link-icon"><i class="fa-solid fa-link"></i></span>
             </div>
             {% endif %}
-        </a>
-    </article>
-{% endfor %}
+            {{ book.review | safe }}
+        </article>
+    {% endfor %}
+    </div>
 </div>
