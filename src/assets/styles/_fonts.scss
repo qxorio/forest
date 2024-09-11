@@ -34,3 +34,24 @@
         url("/assets/fonts/switzer/Switzer-Variable.woff2") format("woff2-variations");
     font-weight: 100 900;
 }
+
+@font-face {
+    font-family: "New Title";
+    src: url("/assets/fonts/new-title/NewTitle-Variable.woff2") format("woff2 supports variations"),
+        url("/assets/fonts/new-title/NewTitle-Variable.woff2") format("woff2-variations");
+    font-weight: 200 600;
+}
+
+@font-face {
+    font-family: "Jakarta Sans";
+    src: url("/assets/fonts/jakarta-sans/PlusJakartaSans-Variable.woff2") format("woff2 supports variations"),
+        url("/assets/fonts/jakarta-sans/PlusJakartaSans-Variable.woff2") format("woff2-variations");
+    font-weight: 200 800;
+}
+
+@font-face {
+    font-family: "Sentient";
+    src: url("/assets/fonts/sentient/Sentient-Variable.woff2") format("woff2 supports variations"),
+        url("/assets/fonts/sentient/Sentient-Variable.woff2") format("woff2-variations");
+    font-weight: 200 600;
+}
