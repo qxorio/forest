@@ -1,0 +1,25 @@
+---
+eleventyComputed: 
+    title: "Works"
+---
+
+{% extends 'layouts/layout.njk' %}
+
+{% block content %}
+<main>
+    {% set worklist = works %}
+    <h1 class="page-title">Works</h1>
+    {% for work in worklist %}
+        <article class="post-item">
+            <a href="/works/{{ work.title | slug }}">
+                <h2>{{ work.title }}</h2>
+                <div>
+                    <time>{{ work.published }}</time>
+                    <span>{{ work.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
+                </div>
+                <p>{{ work.description }}</p>
+            </a>
+        </article>
+    {% endfor %}
+</main>
+{% endblock %}

@@ -1,13 +1,11 @@
-$font--text: "Sora Light", sans-serif;
-$font--heading: "Paper Orange", serif;
-$font--display: "Paper Orange", serif;
+$font--text: "Alte Haas Grotesk", sans-serif;
+$font--heading: "Candu Rounded", serif;
+$font--display: "Candu Rounded", serif;
 
-$color--teal: #48a175;
-$color--sea-glass: #76c29c;
-$color--pinky: #f1b0a7;
-
-$gradient--horizontal: linear-gradient(90deg, $color--teal 19%, $color--pinky 93%);
-$gradient--vertical: linear-gradient(0deg, $color--teal 19%, $color--pinky 93%);
+$color--seaweed: #1d3423;
+$color--greenie: #f7fbf8;
+$color--accent: #729c6e;
+$color--accent-light: #deede2;
 
 $color--void: #171717;
 $color--snow: #ffffff;
@@ -25,7 +23,7 @@ $secondary-color-light: #f8f8f8;
 
 $breakpoints: (
     sm: 26.75rem,
-    ib: 35rem,
+    sm-md: 35rem,
     md: 48rem,
     lg: 64rem,
     xl: 80rem,

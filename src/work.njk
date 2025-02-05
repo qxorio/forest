@@ -1,0 +1,29 @@
+---
+pagination:
+    data: works
+    size: 1
+    alias: work
+    addAllPagesToCollections: true
+permalink:  "works/{{ work.title | slug }}/index.html"
+eleventyComputed: 
+    title: "{{ work.title }}"
+    description: "{{ work.description }}"
+tags:
+    - work
+---
+{% extends 'layouts/layout.njk' %}
+
+{% block content %}
+<main class="inner-content">
+    <article class="work-content">
+        <header class="work-header">
+            <p>
+                <span>{{ work.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
+            </p>
+            <h1>{{ work.title }}</h1>
+        </header>
+        <hr>
+        {{ work.body | safe }}
+    </article>
+</main>
+{% endblock %}
