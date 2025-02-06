@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-            {{ title }} | Quinn Tenorio
+            Quinn Tenorio
         </title>
         <meta name="description" content="{% if description %}{{ description }}
             {% else %}The personal site of Quinn Tenorio{% endif %}" />
@@ -42,9 +42,8 @@
         <script src="https://kit.fontawesome.com/b2c665dea1.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bricks.js/1.1.1/bricks.min.js"></script>
     </head>
-    <body class="default">
+    <body class="home">
         <div class="main-content">
-            {% include "partials/nav.njk" %}
             {% block content %} {{ content }} {% endblock %}
         </div>
     </body>

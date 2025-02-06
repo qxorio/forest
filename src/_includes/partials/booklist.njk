@@ -1,26 +1,30 @@
-<h1 class="page-title">Bookshelf</h1>
-<div class="bookshelf">
+<ul class="full-width-links">
 {% for book in booklist %}
-    <article class="book-on-shelf">
-        <a href="{{ book.review }}" target="_blank">
-            <img src="{{ book.cover }}" alt="{{ book.title }} book cover by {{ book.author }}">
-            <div class="book-details">
-                <h3>{{ book.title }}</h3>
-                <p class="author">{{ book.author }}</p>
-            </div>
+    <li>
+        <a class="media" href="{{ book.review }}" target="_blank">
+            <span class="primary-container">
+                {% if book.reading %}
+                <span class="reading" aria-hidden="true">Reading</span>
+                {% elif book.dnf %}
+                <span class="reading" aria-hidden="true">DNF</span>
+                {% else %}
+                <span class="rating" aria-hidden="true">
+                    {% for star in book.rating %}<i class="fa-solid fa-star"></i>{% endfor %}
+                </span>
+                {% endif %}
+            </span>
+            <span class="book-info">
+                <span class="title">{{ book.title }}</span>
+                <span class="author">{{ book.author }}</span>
+            </span>
             {% if book.reading %}
-            <p class="reading">Reading now</p>
+            <span class="screen-reader">Reading now</span>
             {% elif book.dnf %}
-            <p class="reading">DNF</p>
+            <span class="screen-reader">DNF</span>
             {% else %}
-            <div class="rating-and-link">
-                <p class="rating">
-                    {% for star in book.rating %}<span><i class="fa-solid fa-star"></i></span>{% endfor %}
-                </p>
-                <span class="link-icon"><i class="fa-solid fa-link"></i></span>
-            </div>
-            {% endif %}
+            <span class="screen-reader">{{ book.rating | length}} stars</span>
+            {% endif%}
         </a>
-    </article>
+    </li>
 {% endfor %}
-</div>
+</ul>

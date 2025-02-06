@@ -1,15 +1,14 @@
 ---
 eleventyComputed: 
-    title: "Bookshelf"
+    title: "Log"
 ---
 
 {% extends 'layouts/layout.njk' %}
 
 {% block content %}
-<main class="inner-content">
+<main class="logs">
+    <h1 class="page-title">Log</h1>
     {% set booklist = books %}
     {% include "partials/booklist.njk" %}
 </main>
-
-<script src="/assets/js/bookshelf-grid.js"></script>
 {% endblock %}

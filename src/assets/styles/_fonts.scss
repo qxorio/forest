@@ -27,3 +27,29 @@
     src: local(""), url("/assets/fonts/sora/sora-regular.woff2") format("woff2"),
         url("/assets/fonts/sora/sora-regular.woff") format("woff");
 }
+
+@font-face {
+    font-family: "Candu Rounded";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/assets/fonts/candu-rounded/candu-rounded.woff2") format("woff2");
+}
+
+/* sora-light */
+@font-face {
+    font-family: "Alte Haas Grotesk";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local(""), url("/assets/fonts/alte-haas/alte-haas-grotesk-regular.woff2") format("woff2");
+}
+
+/* sora-regular */
+@font-face {
+    font-family: "Alte Haas Grotesk";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local(""), url("/assets/fonts/alte-haas/alte-haas-grotesk-bold.woff2") format("woff2");
+}
