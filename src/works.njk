@@ -16,7 +16,7 @@ eleventyComputed:
                     <dt class="screen-reader">Category</dt>
                     <dd>{{ work.tags.join(' &#8900;' ) }}</dd>
                 </dl>
-                <h2><a href="/works/{{ work.title | slug }}">{{ work.title }}</a></h2>
+                <h2><a href="/works/{{ work.title_cleaned | slug }}">{{ work.title }}</a></h2>
                 <dl>
                     <dt class="screen-reader">Published</dt>
                     <dd>{{ work.published }}</dd>
@@ -28,21 +28,22 @@ eleventyComputed:
 </main>
 
 <script>
-    const card = document.querySelector(".work");
-    const mainLink = card.querySelector("a");
-    const clickableElements = Array.from(mainLink);
+    const cards = document.querySelectorAll(".work");
+    
+    cards.forEach((element) => {
+        const mainLink = element.querySelector("a");
+        const clickableElements = Array.from(mainLink);
 
-    clickableElements.forEach((ele) =>
-        ele.addEventListener("click", (e) => e.stopPropagation())
-    );
+        clickableElements.forEach((elem) =>
+            elem.addEventListener("click", (e) => e.stopPropagation())
+        );
 
-    function handleClick(event) {
-        const noTextSelected = !window.getSelection().toString();
-        if (noTextSelected) {
-            mainLink.click();
-        }
-    }
-
-    card.addEventListener("click", handleClick);
+        element.addEventListener("click", function(event) {
+            const noTextSelected = !window.getSelection().toString();
+            if (noTextSelected) {
+                mainLink.click();
+            }
+        });
+    });
 </script>
 {% endblock %}

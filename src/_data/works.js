@@ -30,10 +30,11 @@ module.exports = async () => {
         .map((work) => {
             return {
                 pageId: work.id,
-                published: getCustomDate(work.created_time),
+                published: getCustomDate(work.properties.Created.date.start),
                 edited: getCustomDate(work.last_edited_time),
                 tags: work.properties.Tags.multi_select.map((tag) => tag.name),
                 title: work.properties.Title.title[0].plain_text,
+                title_cleaned: stripPunctuationAndTrailingSpaces(work.properties.Title.title[0].plain_text),
                 body: work.content,
                 description: work.properties.Description.rich_text[0].plain_text,
             };
@@ -44,6 +45,11 @@ module.exports = async () => {
 
     return updatedWorks;
 };
+
+function stripPunctuationAndTrailingSpaces(str) {
+    let noPunctuation = str.replace(/[^\w\s]|_/g, "");
+    return noPunctuation.trimEnd();
+}
 
 function getCustomDate(date) {
     let newDate = new Date(date);

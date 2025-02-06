@@ -260,7 +260,9 @@ body {
                     }
 
                     div {
-                        min-width: fit-content;
+                        @include screen-query(smmd) {
+                            width: 52%;
+                        }
                     }
 
                     h2 {
