@@ -4,7 +4,7 @@ pagination:
     size: 1
     alias: work
     addAllPagesToCollections: true
-permalink:  "works/{{ work.title | slug }}/index.html"
+permalink:  "works/{{ work.title_cleaned | slug }}/index.html"
 eleventyComputed: 
     title: "{{ work.title }}"
     description: "{{ work.description }}"
@@ -28,7 +28,7 @@ tags:
             <p>{{ work.description }}</p>
         </div>
     </header>
-    
+
     <article class="work-content">
         {{ work.body | safe }}
     </article>
