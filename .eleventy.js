@@ -19,6 +19,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/assets/meta");
     eleventyConfig.addPassthroughCopy("src/assets/images");
     eleventyConfig.addPassthroughCopy("src/assets/js");
+    eleventyConfig.addPassthroughCopy("src/assets/documents");
 
     return {
         // These are all optional, defaults are shown:

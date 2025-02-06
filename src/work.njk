@@ -14,15 +14,22 @@ tags:
 {% extends 'layouts/layout.njk' %}
 
 {% block content %}
-<main class="inner-content">
+<main class="work-detail">
+    <header class="work-header">
+        <h1>{{ work.title }}</h1>
+        <div>
+            <dl>
+                <dt class="screen-reader">Category</dt>
+                <dd>{{ work.tags.join(' &#8900;' ) }}</dd>
+                
+                <dt class="screen-reader">Published</dt>
+                <dd>{{ work.published }}</dd>
+            </dl>
+            <p>{{ work.description }}</p>
+        </div>
+    </header>
+    
     <article class="work-content">
-        <header class="work-header">
-            <p>
-                <span>{{ work.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
-            </p>
-            <h1>{{ work.title }}</h1>
-        </header>
-        <hr>
         {{ work.body | safe }}
     </article>
 </main>

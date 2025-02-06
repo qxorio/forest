@@ -2,10 +2,9 @@
 {% for book in booklist %}
     <li>
         <a class="media" href="{{ book.review }}" target="_blank">
-            <span class="primary-container {% if book.reading or book.dnf %}flex{% endif %}">
-                <span class="title">{{ book.title }}</span>
+            <span class="primary-container">
                 {% if book.reading %}
-                <span class="reading" aria-hidden="true">Reading now</span>
+                <span class="reading" aria-hidden="true">Reading</span>
                 {% elif book.dnf %}
                 <span class="reading" aria-hidden="true">DNF</span>
                 {% else %}
@@ -14,7 +13,10 @@
                 </span>
                 {% endif %}
             </span>
-            <span class="author">{{ book.author }}</span>
+            <span class="book-info">
+                <span class="title">{{ book.title }}</span>
+                <span class="author">{{ book.author }}</span>
+            </span>
             {% if book.reading %}
             <span class="screen-reader">Reading now</span>
             {% elif book.dnf %}

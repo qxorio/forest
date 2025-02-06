@@ -6,20 +6,43 @@ eleventyComputed:
 {% extends 'layouts/layout.njk' %}
 
 {% block content %}
-<main>
+<main class="works">
     {% set worklist = works %}
     <h1 class="page-title">Works</h1>
     {% for work in worklist %}
-        <article class="post-item">
-            <a href="/works/{{ work.title | slug }}">
-                <h2>{{ work.title }}</h2>
-                <div>
-                    <time>{{ work.published }}</time>
-                    <span>{{ work.tags.join('<span class="fa-solid fa-circle"></span> ') }}</span>
-                </div>
-                <p>{{ work.description }}</p>
-            </a>
+        <article class="work">
+            <div>
+                <dl>
+                    <dt class="screen-reader">Category</dt>
+                    <dd>{{ work.tags.join(' &#8900;' ) }}</dd>
+                </dl>
+                <h2><a href="/works/{{ work.title | slug }}">{{ work.title }}</a></h2>
+                <dl>
+                    <dt class="screen-reader">Published</dt>
+                    <dd>{{ work.published }}</dd>
+                </dl>
+            </div>
+            <p>{{ work.description }}</p>
         </article>
     {% endfor %}
 </main>
+
+<script>
+    const card = document.querySelector(".work");
+    const mainLink = card.querySelector("a");
+    const clickableElements = Array.from(mainLink);
+
+    clickableElements.forEach((ele) =>
+        ele.addEventListener("click", (e) => e.stopPropagation())
+    );
+
+    function handleClick(event) {
+        const noTextSelected = !window.getSelection().toString();
+        if (noTextSelected) {
+            mainLink.click();
+        }
+    }
+
+    card.addEventListener("click", handleClick);
+</script>
 {% endblock %}

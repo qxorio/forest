@@ -46,7 +46,8 @@ module.exports = async () => {
 };
 
 function getCustomDate(date) {
-    return new Date(date).toDateString().split(" ").splice(1).join(" ");
+    let newDate = new Date(date);
+    return newDate.toLocaleString("en-US", { month: "long" }) + " " + newDate.getFullYear();
 }
 
 async function getBlocksAndUploadImages(work) {
